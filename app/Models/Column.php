@@ -12,4 +12,9 @@ class Column extends Model
     protected $fillable = [
       'title'
     ];
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
 }

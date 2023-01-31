@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('columns', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
+            $table->string('description', 500);
+            $table->softDeletes();
+            $table->foreignId('column_id')->index();
             $table->timestamps();
+            $table->foreign('column_id')->references('id')->on('columns')->onDelete('cascade');
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('columns');
+        Schema::dropIfExists('cards');
     }
 };

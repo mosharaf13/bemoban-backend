@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ColumnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('columns', [ColumnController::class, 'index']);
+Route::post('columns', [ColumnController::class, 'store']);
+Route::delete('columns/{column}', [ColumnController::class, 'destroy']);

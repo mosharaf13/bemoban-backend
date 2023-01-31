@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(ColumnSeeder::class);
+        $this->call(CardSeeder::class);
     }
 }

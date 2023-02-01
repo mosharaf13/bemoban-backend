@@ -19,8 +19,8 @@ class CardFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->text(10),
-            'description' => $this->faker->text(10),
+            'title' => $this->faker->text(50),
+            'description' => $this->faker->text(400),
         ];
     }
 }

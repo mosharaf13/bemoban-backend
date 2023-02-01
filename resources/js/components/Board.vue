@@ -17,7 +17,6 @@ export default {
     components: {
         Column
     },
-    props: ['initialCounter'],
     data: function () {
         return {
             columns: [],
@@ -29,6 +28,13 @@ export default {
         this.fetchColumns();
     },
     methods: {
+        updateData: function (event) {
+            console.log("eventbus called");
+            console.log(event);
+            this.$modal.hide('card-details');
+            // EventBus.$off('cardUpdated');
+        },
+
         fetchColumns: function () {
             axios.get(`${this.apiUrl}/columns`)
                 .then(response => {

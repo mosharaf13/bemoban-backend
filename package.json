@@ -14,5 +14,8 @@
         "vue": "^2.7.14",
         "vue-loader": "^15.10.1",
         "vue-template-compiler": "^2.7.14"
+    },
+    "dependencies": {
+        "vue-js-modal": "^2.0.1"
     }
 }

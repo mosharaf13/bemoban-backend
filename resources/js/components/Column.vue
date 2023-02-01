@@ -17,26 +17,14 @@
 
 <script>
 import Card from './Card';
-import axios from "axios";
 
 export default {
     components: {
         Card
     },
-    data() {
-        return {
-            message: 'Hello world!',
-        };
-    },
     props: [
         'column'
-    ],
-    mounted() {
-        console.log(this.column);
-    },
-    methods: {
-
-    }
+    ]
 };
 </script>
 

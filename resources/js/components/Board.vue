@@ -1,8 +1,9 @@
 <template>
     <div class="board">
-        <div v-for="column in columns" :key="column.id">
+        <div v-for="column in columns">
             <column class="board__column"
-                :column="column"
+                    :column="column"
+                    v-on:deleteColumn="deleteColumn(column)"
             ></column>
         </div>
     </div>
@@ -25,17 +26,27 @@ export default {
         }
     },
     mounted() {
-        console.log("bla bla");
         this.fetchColumns();
     },
     methods: {
-        fetchColumns: function(){
+        fetchColumns: function () {
             axios.get(`${this.apiUrl}/columns`)
                 .then(response => {
                     this.columns = response.data
                 })
                 .catch(e => {
                     this.errors.push(e)
+                    //todo show that couldn't fetch columns
+                })
+        },
+
+        deleteColumn: function (column) {
+            axios.delete(`${this.apiUrl}/columns/${column.id}`)
+                .then(response => {
+                    this.columns = this.columns.filter(col => col.id !== column.id)
+                })
+                .catch(e => {
+                    //todo show popup alert
                 })
         }
     }
@@ -49,5 +60,7 @@ $background-color: #D29034;
     display: flex;
     justify-content: flex-start;
     background-color: $background-color;
+    overflow: auto;
+    height: 100vh;
 }
 </style>

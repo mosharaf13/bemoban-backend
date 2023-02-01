@@ -9,6 +9,7 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                height: 100%;
             }
         </style>
     </head>

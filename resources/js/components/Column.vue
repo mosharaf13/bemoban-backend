@@ -1,8 +1,14 @@
 <template>
     <div class="column">
-        <div class="column__title">
-            {{column.title}}
+        <div class="column__header">
+            <div class="column__title">
+                {{column.title}}
+            </div>
+            <div class="close-btn" @click="$emit('deleteColumn', column)">
+                x
+            </div>
         </div>
+
         <div class="column__cards" v-for="card in column.cards" :key="card.id">
             <card :card="card"></card>
         </div>
@@ -11,6 +17,7 @@
 
 <script>
 import Card from './Card';
+import axios from "axios";
 
 export default {
     components: {
@@ -26,6 +33,9 @@ export default {
     ],
     mounted() {
         console.log(this.column);
+    },
+    methods: {
+
     }
 };
 </script>
@@ -39,10 +49,20 @@ export default {
     padding: 1rem .5rem;
     margin: 1rem .5rem;
 
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 4px;
+    }
+
     &__title{
         font-weight: bold;
         font-size: .9rem;
-        padding: 8px 4px;
     }
 }
+.close-btn{
+    cursor: pointer;
+}
+
+
 </style>

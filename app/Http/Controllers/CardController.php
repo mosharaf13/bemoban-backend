@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 //todo add api method to return all cards ( even those who are soft deleted )
+//todo increase title length of cards (200 chars?)
 class CardController extends Controller
 {
     /**
@@ -16,6 +18,29 @@ class CardController extends Controller
     public function index()
     {
         return response()->json(Card::all());
+    }
+
+    public function list(Request $request)
+    {
+        $request->validate([
+           'date' => ['sometimes', 'date_format:Y-m-d'],
+            'status' => ['sometimes', 'digits_between:0,1']
+        ]);
+
+        $query = Card::query();
+        if($request->has('date')){
+            $query->whereDate('created_at', '=', Carbon::parse($request->get('date')));
+        }
+
+        if(!$request->has('status')){
+            return $query->withTrashed()->get();
+        }
+
+        if($request->has('status') && $request->get('status') == 0){
+            $query->onlyTrashed();
+        }
+
+        return $query->get();
     }
 
     /**
@@ -61,6 +86,7 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
+        //todo check if cards names can be empty
         $validated = $request->validate([
             'title' => ['nullable', 'max:50'],
             'description' => ['nullable', 'max:500']

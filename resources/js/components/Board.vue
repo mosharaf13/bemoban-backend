@@ -1,34 +1,53 @@
 <template>
     <div class="board">
-        <column></column>
+        <div v-for="column in columns" :key="column.id">
+            <column class="board__column"
+                :column="column"
+            ></column>
+        </div>
     </div>
 </template>
 
 <script>
 import Column from './Column'
+import axios from "axios";
 
 export default {
     components: {
         Column
     },
-    data() {
+    props: ['initialCounter'],
+    data: function () {
         return {
-            message: 'Hello world!',
-        };
+            columns: [],
+            errors: [],
+            apiUrl: process.env.MIX_API_URL
+        }
     },
     mounted() {
         console.log("bla bla");
+        this.fetchColumns();
+    },
+    methods: {
+        fetchColumns: function(){
+            axios.get(`${this.apiUrl}/columns`)
+                .then(response => {
+                    this.columns = response.data
+                })
+                .catch(e => {
+                    this.errors.push(e)
+                })
+        }
     }
 };
 </script>
 
 <style lang="scss">
-$primary: green;
+$background-color: #D29034;
 
-.message {
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    color: blue;
-    background: $primary;
+.board {
+    display: flex;
+    justify-content: flex-start;
+    background-color: $background-color;
 }
 </style>

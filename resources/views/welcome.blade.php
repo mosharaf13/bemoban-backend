@@ -14,9 +14,7 @@
     </head>
     <body>
         <div id="app">
-            <div class="bla" style="width: 100px; height:100px; background: red">
-                <board></board>
-            </div>
+            <board></board>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>

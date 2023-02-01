@@ -14,7 +14,7 @@ class ColumnController extends Controller
      */
     public function index()
     {
-        return response()->json(Column::all());
+        return response()->json(Column::with('cards')->get());
     }
 
     /**

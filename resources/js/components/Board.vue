@@ -188,7 +188,8 @@ export default {
                 title: title
             })
                 .then(response => {
-                    //todo show success alert
+                    this.fetchColumns();
+                    this.$modal.hideAll();
                 })
                 .catch(e => {
                     this.errors.push(e)
@@ -203,7 +204,8 @@ export default {
                 column_id: columnName
             })
                 .then(response => {
-                    //todo show success alert
+                    this.fetchColumns();
+                    this.$modal.hideAll();
                 })
                 .catch(e => {
                     this.errors.push(e)

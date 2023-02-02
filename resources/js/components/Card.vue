@@ -105,6 +105,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .card {
     box-shadow: var(--ds-shadow-raised, 0 1px 0 #091e4240); //todo change this
     margin: 6px 2px;
@@ -114,32 +115,5 @@ export default {
     font-size: 15px;
     cursor: pointer;
 }
-.card-details {
-    //height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
 
-    &__title {
-        //width: 100%;
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    &__description {
-        //width: 100%;
-        resize: none;
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    &__btns {
-        display: flex;
-        justify-content: center;
-
-        button {
-            margin: 0 5px;
-        }
-    }
-}
 </style>

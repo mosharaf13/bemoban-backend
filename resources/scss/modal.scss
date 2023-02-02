@@ -1,0 +1,33 @@
+.card-details {
+    //height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+
+    &__title {
+        //width: 100%;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    &__select {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    &__description {
+        //width: 100%;
+        resize: none;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    &__btns {
+        display: flex;
+        justify-content: center;
+
+        button {
+            margin: 0 5px;
+        }
+    }
+}

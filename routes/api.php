@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ColumnController;
+use App\Http\Controllers\DbDumperController;
 use App\Http\Middleware\CheckToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::get('list-cards', [CardController::class, 'list'])->middleware(CheckToken
 Route::post('cards', [CardController::class, 'store']);
 Route::put('cards/{card}', [CardController::class, 'update']);
 Route::delete('cards/{card}', [CardController::class, 'destroy']);
+
+Route::post('db/dump', [DbDumperController::class, 'dump']);

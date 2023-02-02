@@ -3,6 +3,7 @@
         <div class="bemoban__header">
             <button @click="addColumn()">Add Column</button>
             <button @click="addCard()">Add Card</button>
+            <button @click="dumpDb()">Dump DB</button>
         </div>
         <div class="board">
             <div v-for="column in columns">
@@ -57,6 +58,16 @@ export default {
             axios.delete(`${this.apiUrl}/columns/${column.id}`)
                 .then(response => {
                     this.columns = this.columns.filter(col => col.id !== column.id)
+                })
+                .catch(e => {
+                    //todo show popup alert
+                })
+        },
+
+        dumpDb: function () {
+            axios.post(`${this.apiUrl}/db/dump`)
+                .then(response => {
+
                 })
                 .catch(e => {
                     //todo show popup alert
